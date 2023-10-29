@@ -1,0 +1,10 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  & h1 {
+    margin: 30px;
+  }
+}
