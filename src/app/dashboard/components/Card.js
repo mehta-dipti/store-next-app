@@ -5,22 +5,6 @@ import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/materia
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Highlighter from "react-highlight-words";
 import { CONSTANTS, displayWeek, week } from "@/constants";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles({
-  storeTimings: {
-    "& .MuiPaper-root": {
-      "& .MuiAccordionSummary-root": {
-        marginTop: 0,
-        minHeight: "20px",
-        "& .Mui-expanded": {
-          margin: 0,
-          minHeight: "20px",
-        },
-      },
-    },
-  },
-});
 
 export const Card = ({ store, searchText, storeDetails = false }) => {
   const [isStoreOpen, setIsStoreOpen] = useState(false);
@@ -50,8 +34,6 @@ export const Card = ({ store, searchText, storeDetails = false }) => {
     return `${time} AM`;
   };
 
-  const classes = useStyles();
-
   return (
     <>
       {storeDetails ? (
@@ -67,11 +49,11 @@ export const Card = ({ store, searchText, storeDetails = false }) => {
       <div className={styles.card}>
         <img className={styles.storeImg} src={store.imageUrl} width={400} height={500}></img>
         {storeDetails ? (
-          <div className={styles.storeDetails}>
+          <div className={styles.storeDetailsContainer}>
             <Box>
               <h2>{store.name}</h2>
               <p>{store.description}</p>
-              <div style={{ display: "flex", columnGap: "50px", marginTop: "50px" }}>
+              <div className={styles.storeDetails}>
                 <div className={styles.contactDetails}>
                   <h4 className={styles.title}>Contact Details</h4>
                   <p>
@@ -83,10 +65,10 @@ export const Card = ({ store, searchText, storeDetails = false }) => {
                   </p>
                   <p>{store.phone}</p>
                 </div>
-                <div className={classes.storeTimings}>
-                  <h4 className={styles.title}>Store Timings</h4>
+                <div>
+                  <h4 className={styles.timingTitle}>Store Timings</h4>
                   <Accordion sx={{ boxShadow: "none", width: "300px", padding: 0 }}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: "20px", padding: 0 }}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: "20px", padding: 0, minHeight: "64px" }}>
                       <p>{isStoreOpen ? `Open - Closes at ${getTweleveHrTime(closeTime)}` : `${getTweleveHrTime(openingTime)}`}</p>
                     </AccordionSummary>
                     <AccordionDetails sx={{ padding: 0, textAlign: "left" }}>
@@ -110,7 +92,7 @@ export const Card = ({ store, searchText, storeDetails = false }) => {
             </Box>
           </div>
         ) : (
-          <div className={styles.storeDetails}>
+          <div className={styles.storeDetailsContainer}>
             <Box>
               <h2>
                 <Highlighter highlightClassName="highlightClass" searchWords={[searchText]} autoEscape={true} textToHighlight={store.name} />

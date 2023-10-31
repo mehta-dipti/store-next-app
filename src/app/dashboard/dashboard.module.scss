@@ -9,12 +9,18 @@
   align-items: center;
 }
 
-.storeDetails {
+.storeDetailsContainer {
   padding-left: 50px;
   height: 450px;
   width: 550px;
   display: flex;
   align-items: center;
+}
+
+.storeDetails {
+  display: flex;
+  column-gap: 50px;
+  margin-top: 50px;
 }
 
 .dashboard {
@@ -30,9 +36,14 @@
   color: black;
 }
 
-.title {
+.title,
+.timingTitle {
   color: black;
   position: static;
+}
+
+.timingTitle {
+  margin: 0;
 }
 
 .back {
@@ -62,7 +73,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .searchBar {
     width: 100%;
     margin-top: 20px;
@@ -98,9 +109,9 @@
     justify-content: center;
   }
 
-  .storeDetails {
+  .storeDetailsContainer {
     padding: 50px 10px;
-    width: 60%;
+    width: 75%;
     height: auto;
   }
 
@@ -112,5 +123,17 @@
       display: flex;
       column-gap: 20px;
     }
+  }
+}
+
+@media screen and (max-width: "720px") {
+  .storeDetails {
+    display: flex;
+    flex-direction: column;
+    column-gap: 0;
+    margin-top: 0;
+  }
+  .storeDetails > div {
+    margin-top: 50px;
   }
 }
